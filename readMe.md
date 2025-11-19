@@ -70,3 +70,24 @@
 - run a migration: `python manage.py migrate`:
     ![alt text](image-2.png)
 
+## Create Admin
+- create superuser `python manage.py createsuperuser`:
+    ![alt text](image-3.png)
+- run the app: `python manage.py runserver`
+- navigate to `/admin` endpoint:
+    ![alt text](image-4.png)
+
+## Register the model in the admin
+- navigate to the `admin.py`(in app directory/folder) and register the models
+    ```
+    from django.contrib import admin
+    from . import models # models
+
+    # Register your models here.
+
+    admin.site.register(models.Produce)
+
+    ```
+
+- refresh your admin panel (assuming you are still runnning the project):
+    ![alt text](image-5.png)
