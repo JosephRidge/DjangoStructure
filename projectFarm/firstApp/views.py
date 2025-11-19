@@ -7,4 +7,5 @@ View will take in a repsonse as a param and return either a httpresponse or rend
 """
 # Create your views here.
 def produceSector(request):
-    return HttpResponse("Produce by natures choice!")
+    context = {"data":"welcome home"}
+    return render(request, 'index.html', context) #HttpResponse("Produce by natures choice!")
