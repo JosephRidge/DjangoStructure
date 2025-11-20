@@ -3,5 +3,7 @@ from . import views # import veiws from the current root directory
 
 # endpoints + target view functions
 urlpatterns = [
-    path('produce', views.produceSector)
+    path('', views.produceSector, name ='home'),
+    path('produce', views.produceSector, name ='produce'),
+    path('market', views.marketSector, name ='market')
 ]

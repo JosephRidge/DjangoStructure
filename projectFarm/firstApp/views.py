@@ -7,4 +7,8 @@ View will take in a repsonse as a param and return either a httpresponse or rend
 """
 # Create your views here.
 def produceSector(request): 
-    return render(request, 'home.html')  
+    return render(request, 'firstApp/home.html')  
+
+# Create your views here.
+def marketSector(request): 
+    return render(request, 'firstApp/market.html')  

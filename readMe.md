@@ -194,5 +194,23 @@
 
     {% endblock %}
     ```
-    
+
+- decouple the app related template:
+    - create a subfolder called `templates` inside the app directory, i.e `templates`
+    - create a subfolder inside templates  called `firstApp` (name of the application): 
+    ![alt text](image-6.png)
+
+- update your `views.py` file: 
+    ```
+    # Create your views here.
+    def produceSector(request): 
+        return render(request, 'firstApp/home.html')  
+    ```
+
+## Creating the routes in navbar
+- adding the navbar
+-  on the hrefs, place the routes as such:
+    `{% url '{nameOfRoute}' %}`
+
+
 ## Display Data on Template
