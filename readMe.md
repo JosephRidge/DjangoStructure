@@ -93,4 +93,106 @@
 - refresh your admin panel (assuming you are still runnning the project):
     ![alt text](image-5.png)
 
+## Adding Templates
+- navigate to the projct root folder i.e inside `projectFarm`
+- create a subfolder inside it and call it `templates`
+- navigate to `settings.py`(found inside the projectfolder) and add this configuration 
+    ```
+            TEMPLATES = [
+                {
+                    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+                    'DIRS': [BASE_DIR / 'templates'],
+                    'APP_DIRS': True,
+                    'OPTIONS': {
+                        'context_processors': [
+                            'django.template.context_processors.request',
+                            'django.contrib.auth.context_processors.auth',
+                            'django.contrib.messages.context_processors.messages',
+                        ],
+                    },
+                },
+            ]
+    ```
+- create a `main.html` file inside it: 
+    ```
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+                integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+            <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+                crossorigin="anonymous"></script>
+
+        </head>
+
+        <body>
+            <div class="container my-5">
+                <div class="display-6"> Welcome Home </div>
+            </div>
+        </body>
+
+        </html>
+    ```
+- updated the view funtion related to it: 
+    ```
+    # Create your views here.
+        def produceSector(request): 
+            return render(request, 'main.html')  
+    ```
+- we will now inherit templates using: 
+
+    ```
+    {% extends 'main.html' %}
+    
+    ```
+- we will also create a container area for different pages: 
+    ```
+     {% block content %}
+     {% endblock %}
+    ```
+- now update your `main.html` as this: 
+    ```
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"></script>
+
+    </head>
+
+    <body>
+
+        {% include 'nav.html' %}
+
+        {% block content %}
+        {% endblock %}
+        
+    </body>
+
+    </html>
+    ```
+- create `home.html` inside the templates directory: 
+    ```
+    {% extends 'main.html' %}
+    {% block content %}
+
+    <div class="container my-5">
+        <div class="display-6"> Welcome Home </div>
+    </div>
+
+    {% endblock %}
+    ```
+    
 ## Display Data on Template
