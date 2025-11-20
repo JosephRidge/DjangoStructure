@@ -32,7 +32,7 @@
         ```
 
 - add it to the path in the `project` level `urls.py`: 
-        ```
+    ```
         from django.contrib import admin
         from django.urls import path, include
 
@@ -40,11 +40,12 @@
             path('admin/', admin.site.urls),
             path('firstApp/',include('firstApp.urls'))
         ]
-        ```
+    ```
+        
 
 - create a `urls.py` inside the `firstApp` directory:
     ```
-    from django.urls import path # helps us import the method path for our endpoints
+        from django.urls import path # helps us import the method path for our endpoints
         from . import views # import veiws from the current root directory
 
         # endpoints + target view functions
@@ -70,14 +71,14 @@
 - run a migration: `python manage.py migrate`:
     ![alt text](image-2.png)
 
-## Create Admin
+## Create SuperUser and accessed the admin panel
 - create superuser `python manage.py createsuperuser`:
     ![alt text](image-3.png)
 - run the app: `python manage.py runserver`
 - navigate to `/admin` endpoint:
     ![alt text](image-4.png)
 
-## Register the model in the admin
+## Register the model in the admin panel
 - navigate to the `admin.py`(in app directory/folder) and register the models
     ```
     from django.contrib import admin
@@ -91,3 +92,5 @@
 
 - refresh your admin panel (assuming you are still runnning the project):
     ![alt text](image-5.png)
+
+## Display Data on Template
