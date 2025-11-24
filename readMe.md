@@ -213,4 +213,153 @@
     `{% url '{nameOfRoute}' %}`
 
 
-## Display Data on Template
+## Preapring to display Data on Template
+![alt text](image-7.png)
+- create a model for the data:
+    ```
+    class Fruit(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.CharField(max_length=255) # strings with a max length in character of 255
+    price = models.FloatField() # float numbers eg 20.25
+    created_at = models.DateField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)
+
+    class Meta: 
+        ordering = [-created_at,-updated_at]
+
+
+    def __str__(self):
+        return self.name
+
+    ```
+- add(register) the model to the admin panel, navigate to the app level `admin.py`:
+    ```
+        from django.contrib import admin
+        from . import models # models
+
+        # Register your models here.
+        admin.site.register(models.Produce)
+        admin.site.register(models.Fruit)
+    ```
+
+## Create - Create Read Update Delete(CRUD) placeholder functions: 
+- Preparing the functions to enable CRUD operarions 
+```
+def createFruit(request):
+    return render(request)
+
+def readAllFruits(request):
+    return render(request)
+
+def readOneFruit(request):
+    return render(request)
+
+def updateFruit(request):
+    return render(request)
+
+def deletFruit(request):
+    return render(request)
+
+```
+
+## Update the `urls.py` with the routes: 
+
+from django.urls import path # helps us import the method path for our endpoints
+from . import views # import veiws from the current root directory
+
+# endpoints + target view functions:
+    ```
+        path('readAll', views.marketSector, name ='readAll'),
+        path('readOne/<str:pk>', views.readOneFruit, name ='readOne'),
+
+    ```
+ 
+## Create Data Operation: 
+- Create a Form(ModelForm):
+    - create a file under the app folder called `forms.py`
+    - create model form: 
+        ```
+        from django.forms import ModelForm
+        from .models import Fruit
+
+        class FruitForm(ModelForm):
+            class Meta:
+                model = Fruit
+                fields = '__all__' # or target specific columns eg ['name', 'description', 'price]
+        ```
+
+- navigate to `urls.py` and import the `FruitForm`, `from .forms import FruitForm`
+- update the view function to create the new record:
+```
+    def createFruit(request):
+    form = FruitForm()
+    context = {"form":form}
+
+    if request.method == "POST":
+        form = FruitForm(request.POST)
+        if form.is_valid(): 
+            form.save()
+            return redirect("market")            
+
+    return render(request, "firstApp/form.html", context )
+
+```
+
+- create `form.html`:
+```
+    {% extends 'main.html' %}
+
+    {% block content %}
+
+    <div class="container my-5">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="submit">
+        </form>
+    </div>
+
+    {% endblock %}
+
+```
+
+
+
+## Read Data operations: 
+- key important bits: 
+    - `Fruit.objects.all()`: fetched all the data under the Fruits tables
+    - `Fruit.objects.get(id=pk)`: fetched the fruit data where id was pk(primary key)
+
+- read all data from DB, update our `views.py` file:
+    ```
+    def readAllFruits(request):
+        fruits = Fruit.objects.all() # ORM helps us not write sQL syntax here => transalates to SELECT * FROM fruits;
+        context = {"fruits":fruits}
+        return render(request,"firstApp/market.html", context)
+
+    def readOneFruit(request,pk):
+        fruit = Fruit.objects.get(id = pk)
+        context ={"fruit":fruit}
+        return render(request,"firstApp/fruit_details.html", context)
+    ```
+
+## Update template( app level):
+    ```
+    {% extends 'main.html' %}
+
+    {% block content %}
+
+    <div class="container my-5">
+        <div class="display-3"> Welcome to the Market SPACE!! </div>
+        <hr>
+        <!-- <div class="fs-6"> {{ fruits }} </div> -->
+        {% for fruit in fruits %}
+            <div class="display-5">{{fruit.name}}</div>
+            <p class="lead">{{fruit.description}}</p>
+            <div class="badge bg-dark">ksh. {{fruit.price}}</div> 
+        <hr>
+        {% endfor %}
+    </div>
+
+    {% endblock %}
+    ```

@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="container my-5">
+    <div class="display-3"> Welcome to the  </div>
+    <hr> 
+        <div class="display-5">{{fruit.name}}</div>
+        <p class="lead">{{fruit.description}}</p>
+        <div class="badge bg-dark">ksh. {{fruit.price}}</div> 
+    <hr> 
+</div>
+
+{% endblock %}
