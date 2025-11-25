@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+    <h1 class="display-4  fw-bold">Vegetable Garden</h1>
+
+    <hr>
+<div>
+  
+
+  {% for vegetable in vegetables %}
+    <div class="display-6">{{vegetable.name}} </div>
+    <p class="lead">{{vegetable.description}}</p>
+    <hr>
+    
+  {% endfor %}
+</div> 
+</div>
+
+{% endblock %}

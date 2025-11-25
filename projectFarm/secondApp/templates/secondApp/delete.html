@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+    <h1 class="display-4  fw-bold">Vegetable Garden</h1>
+
+    <hr>
+<div>
+  
+ <a href="{% url 'read-flowers'%}" class="text-success text-decoration-none">Back to home? </a> 
+ <br>
+ <a href="{% url 'delete-flower' flower.id %}" class="text-danger text-decoration-none">delete flower </a>
+</div> 
+</div>
+
+{% endblock %}

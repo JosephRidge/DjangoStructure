@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+    <h1 class="display-4  fw-bold">Flower Garden</h1>
+    <hr>
+    <div>
+
+        <div class="display-6">{{flower.name}} </div>
+        <p class="lead">{{flower.description}}</p>
+        <span class="badge bg-danger  text-light px-3 py-2">ksh. {{flower.price}} /=</span>
+        <hr>
+
+    </div>
+</div>
+
+{% endblock %}
