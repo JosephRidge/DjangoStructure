@@ -40,8 +40,7 @@ def createFlower(request):
 
 def readFlowers(request):
     flowers = Flower.objects.all() # fetches all the flower data
-    context = {"flowers":flowers}
-    print(flowers)
+    context = {"flowers":flowers} 
     return render(request, "secondApp/flowers.html",context)
 
 def readOneFlower(request, pk):
