@@ -1,13 +1,12 @@
-{% extends 'main.html' %}
+{% extends 'index.html' %}
 
 {% block content %}
-
+<!-- 
 <div class="container my-5">
     <div class="display-3"> Welcome to the Market SPACE!! </div>
     <a href="{% url 'create' %}"  class="badge bg-warning text-decoration-none py-2 px-3 text-dark">Add Fruit </a>
 
-    <hr>
-    <!-- <div class="fs-6"> {{ fruits }} </div> -->
+    <hr> 
      {% for fruit in fruits %}
         <div class="display-5">{{fruit.name}}</div>
         <p class="lead">{{fruit.description}}</p>
@@ -15,6 +14,6 @@
         <a href="{% url 'readOne' fruit.id %}"  class="badge bg-info text-decoration-none py-2 px-3 text-dark">view more > </a>
     <hr>
      {% endfor %}
-</div>
+</div> -->
 
 {% endblock %}
