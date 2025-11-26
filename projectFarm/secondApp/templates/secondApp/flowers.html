@@ -14,8 +14,9 @@
         <p class="lead">{{flower.description}}</p>
         <a href="{% url 'read-one-flower' flower.id  %}" class="text-decoration-none text-warning">see more > </a><br>
         <a href="{% url 'update-flower' flower.id  %}" class="text-decoration-none text-success">update flower > </a><br>
-        <a href="{% url 'prompt-delete-flower' flower.id  %}" class="text-decoration-none text-danger">delete flower > </a>
-
+        <a href="{% url 'delete-flower' flower.id  %}" class="text-decoration-none text-danger">delete flower > </a>
+      <br>  <span class="lead fs-6">CREATED AT: {{flower.created_at}}</span>
+        <span class="lead fs-6">UPDATED AT: {{flower.updated_at}}</span>
         <hr>
         {% endfor %}
     </div>

@@ -11,7 +11,6 @@ urlpatterns = [
     path('read-flowers', views.readFlowers, name='read-flowers'),
     path('read-flowers/<str:pk>', views.readOneFlower, name='read-one-flower'),
     path('update-flower/<str:pk>', views.updateFlower, name='update-flower'),
-    path('delete/<str:pk>', views.updateFlower, name='delete-flower'),
-    path('prompt-delete/<str:pk>', views.promptDelete, name='prompt-delete-flower')
+    path('delete/<str:pk>', views.deleteFlower, name='delete-flower'),
 
 ]

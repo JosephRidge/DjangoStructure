@@ -21,9 +21,9 @@ class Flower(models.Model):
     created_at = models.DateField(auto_now_add = True)
     updated_at = models.DateField(auto_now=True)
 
-    # TODO: Figure out!
-    # class Meta:
-    #     ordering = ["-created_at"]
+    # # TODO: Figure out!
+    class Meta:
+        ordering = ['-created_at', '-updated_at']
 
     def __str__(self):
         return f"Name: {self.name}. Price: {self.price}" 

@@ -41,6 +41,7 @@ def createFlower(request):
 def readFlowers(request):
     flowers = Flower.objects.all() # fetches all the flower data
     context = {"flowers":flowers}
+    print(flowers)
     return render(request, "secondApp/flowers.html",context)
 
 def readOneFlower(request, pk):
@@ -60,16 +61,12 @@ def updateFlower(request, pk):
 
     context = {"form":form}
     return render(request, "secondApp/form.html", context)
-
-def promptDelete(request, pk):
-    flower = Flower.objects.get(id=pk)
-    context = {"flower":flower}
-    return render(request, "secondApp/prompt_delete.html", context)
+ 
 
 def deleteFlower(request, pk):
     flower = Flower.objects.get(id=pk)
-    if flower:
-        Flower.objects.delete(id=pk)
+    if request.method == "POST":
+        flower.delete()
         return redirect("read-flowers")
     context = {"flower":flower}
     return render(request,"secondApp/delete.html", context)

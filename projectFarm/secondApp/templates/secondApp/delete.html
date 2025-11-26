@@ -6,12 +6,26 @@
     <h1 class="display-4  fw-bold">Vegetable Garden</h1>
 
     <hr>
-<div>
-  
- <a href="{% url 'read-flowers'%}" class="text-success text-decoration-none">Back to home? </a> 
- <br>
- <a href="{% url 'delete-flower' flower.id %}" class="text-danger text-decoration-none">delete flower </a>
-</div> 
+
+
+    <div class="container py-5">
+        <div>
+
+            <div class="display-6">{{flower.name}} </div>
+            <p class="lead">{{flower.description}}</p>
+            <span class="badge bg-danger  text-light px-3 py-2">ksh. {{flower.price}} /=</span>
+            <hr>
+
+        </div>
+    </div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <a href="{{request.META.HTTP_REFERER}}" class="btn py-1 px-4 bg-success text-light fw-bold text-decoration-none">go back! </a>
+   
+        <input type="submit" value="Delete flower: {{flower.name}}" class="btn text-light fw-bold bg-danger py-1 px-4 ">
+
+    </form>
+
 </div>
 
 {% endblock %}
